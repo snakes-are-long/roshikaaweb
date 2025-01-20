@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JMC ICT Club - Photo Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <style>
+        /* Add your CSS styling here */
+        /* For example: */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #photoContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .photo {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="photoContainer"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+<script>
+    const photoURLs = [
+        'assets/img/photo1.jpg',
+        'assets/img/photo2.jpg',
+        'assets/img/photo3.jpg',
+        // Add more photo URLs as needed
+    ];
+
+    function displayPhotos() {
+        const photoContainer = document.getElementById('photoContainer');
+
+        photoURLs.forEach((url, index) => {
+            const img = document.createElement('a');
+            img.href = url;
+            img.setAttribute('data-lightbox', 'photos'); // Set the lightbox group name
+            img.setAttribute('data-title', `Photo ${index + 1}`);
+            
+            const imgElement = document.createElement('img');
+            imgElement.src = url;
+            imgElement.alt = `Photo ${index + 1}`;
+            imgElement.classList.add('photo');
+
+            img.appendChild(imgElement);
+            photoContainer.appendChild(img);
+        });
+
+        // Initialize Lightbox2
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true
+        });
+    }
+
+    window.onload = displayPhotos;
+</script>
+
+</body>
+</html>
